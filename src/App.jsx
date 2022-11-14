@@ -4,13 +4,14 @@ const App = () => {
     const [activeTab, setActiveTab] = useState(1);
     const [temperature, setTemperature] = useState(0.7);
     const [maxLength, setMaxLength] = useState(256);
+    const [topP, setTopP] = useState(1);
 
     return (
         <div id="root" className="grid grid-span-rows grid-cols-12 gap w-screen h-screen">
-            <div contentEditable="true" className="transition-all bg-base-200 border hover:border-primary focus:border-primary-focus col-span-9 m-2 rounded p-2 outline-none">
+            <div contentEditable="true" className="transition-all bg-base-200 border hover:border-primary focus:border-primary-focus col-span-8 m-2 rounded p-2 outline-none">
 
             </div>
-            <div className="flex flex-col col-span-3 mt-2 mb-2 pr-2 w-full">
+            <div className="flex flex-col col-span-4 mt-2 mb-2 pr-2 w-full">
                 <div className="flex flex-row justify-evenly tabs tabs-boxed w-full mb-2">
                     <a className={`transition-all w-1/4 tab ${activeTab === 1 && 'tab-active'}`} onClick={() => { setActiveTab(1); }}>GPT-3</a>
                     <a className={`transition-all w-1/4 tab ${activeTab === 2 && 'tab-active'}`} onClick={() => { setActiveTab(2); }}>GPT-NEO</a>
@@ -38,7 +39,13 @@ const App = () => {
                         <span className="label-text-lg pt-4">Maximum Length</span>
                     </label>
                     <div className="flex flex-row items-center gap-4">
-                        <input type="range" min="1" max="2048" defaultValue={maxLength} className="range range-primary w-5/6" step="1" id="gpt3-max-len" onChange={(e) => { setMaxLength(e.target.value); }}/><span className="input w-1/6 h-min p-2 bg-base-200">{maxLength}</span>
+                        <input type="range" min="1" max="2048" value={maxLength} className="range range-primary w-5/6" step="1" id="gpt3-max-len" onChange={(e) => { setMaxLength(e.target.value); }}/><span className="input w-1/6 h-min p-2 bg-base-200">{maxLength}</span>
+                    </div>
+                    <label className="label" htmlFor="gpt3-top-p">
+                        <span className="label-text-lg pt-4">Maximum Length</span>
+                    </label>
+                    <div className="flex flex-row items-center gap-4">
+                        <input type="range" min="0" max="1" value={topP} className="range range-primary w-5/6" step="0.01" id="gpt3-top-p" onChange={(e) => { setTopP(e.target.value); }}/><span className="input w-1/6 h-min p-2 bg-base-200">{topP}</span>
                     </div>
                 </div>
 
