@@ -1,0 +1,39 @@
+{
+    "gpt3": {
+        "temperature": 0.7,
+        "maxLength": 256,
+        "topP": 1,
+        "frequencyPenalty": 0,
+        "presencePenalty": 0
+    },
+    "gptneo": {
+        "temperature": 1,
+        "maxLengthEnabled": false,
+        "maxLength": 128,
+        "topPEnabled": false,
+        "topP": 1,
+        "repetitionPenaltyEnabled": false,
+        "repetitionPenalty": 0,
+        "doSample": true
+    },
+    "gptj": {
+        "temperature": 1,
+        "maxLengthEnabled": false,
+        "maxLength": 128,
+        "topPEnabled": false,
+        "topP": 1,
+        "repetitionPenaltyEnabled": false,
+        "repetitionPenalty": 0,
+        "doSample": true
+    },
+    "bloom": {
+        "temperature": 1,
+        "maxLengthEnabled": false,
+        "maxLength": 128,
+        "topPEnabled": false,
+        "topP": 1,
+        "repetitionPenaltyEnabled": false,
+        "repetitionPenalty": 0,
+        "doSample": true
+    }
+}
