@@ -42,7 +42,7 @@ const App = () => {
                 <div contentEditable="true" className="transition-all bg-base-200 border hover:border-primary focus:border-primary-focus col-span-8 m-2 rounded p-2 outline-none">
 
                 </div>
-                <div className="flex flex-col col-span-4 mt-2 mb-2 pr-2 w-full">
+                <div className="flex flex-col col-span-4 mt-2 mb-2 pr-2 w-full overflow-auto">
                     <div className="flex flex-row justify-evenly tabs tabs-boxed w-full mb-2 border rounded">
                         <a className={`transition-all w-1/4 tab ${activeTab === 1 && 'tab-active'}`} onClick={() => { setActiveTab(1); }}>GPT-3</a>
                         <a className={`transition-all w-1/4 tab ${activeTab === 2 && 'tab-active'}`} onClick={() => { setActiveTab(2); }}>GPT-NEO</a>
@@ -58,7 +58,7 @@ const App = () => {
                     </div>
 
                     <div className="flex flex-row mt-2 justify-between w-full p gap">
-                        <button className="btn btn-primary w-2/5">Query all</button><button className="btn btn-primary w-2/5">Query highlighted model</button><label htmlFor="settings-modal" className="btn">Settings</label>
+                        <button className="btn btn-primary">Query all</button><button className="btn btn-primary">Query highlighted model</button><label htmlFor="settings-modal" className="btn">Settings</label>
                     </div>
                 </div>
             </div>
