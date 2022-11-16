@@ -17,6 +17,7 @@ const GPTNEO = ({settings, updateSettings}) => {
 
     return (
         <>
+            <h3 className="font-bold text-lg pl-1">GPT-NEO Options</h3>
             <label className="label" htmlFor="gptneo-temp">
                 <span className="label-text-lg">Temperature</span>
             </label>

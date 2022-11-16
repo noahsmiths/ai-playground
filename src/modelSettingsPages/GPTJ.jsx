@@ -17,6 +17,7 @@ const GPTJ = ({settings, updateSettings}) => {
 
     return (
         <>
+            <h3 className="font-bold text-lg pl-1">GPT-J Options</h3>
             <label className="label" htmlFor="gptj-temp">
                 <span className="label-text-lg">Temperature</span>
             </label>

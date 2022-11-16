@@ -14,6 +14,7 @@ const GPT3 = ({settings, updateSettings}) => {
 
     return (
         <>
+            <h3 className="font-bold text-lg pl-1">GPT-3 Options</h3>
             <label className="label" htmlFor="gpt3-model">
                 <span className="label-text-lg">Model</span>
             </label>

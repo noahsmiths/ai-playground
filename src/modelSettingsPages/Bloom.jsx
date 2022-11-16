@@ -17,6 +17,7 @@ const Bloom = ({settings, updateSettings}) => {
 
     return (
         <>
+            <h3 className="font-bold text-lg pl-1">Bloom Options</h3>
             <label className="label" htmlFor="bloom-temp">
                 <span className="label-text-lg">Temperature</span>
             </label>
