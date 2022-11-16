@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Settings = ({openAI, huggingFace}) => {
     const { openAIKey, setOpenAIKey } = openAI;
     const { huggingFaceKey, setHuggingFaceKey } = huggingFace;

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import defaultSettings from './modelSettingsPages/defaultSettings.json';
+import defaultSettings from './config/default-model-settings.json';
 
-import Settings from './Settings';
+import Settings from './components/Settings';
 
-import GPT3 from './modelSettingsPages/GPT3';
-import GPTNEO from './modelSettingsPages/GPTNEO';
-import GPTJ from './modelSettingsPages/GPTJ';
-import Bloom from './modelSettingsPages/Bloom';
+import GPT3 from './components/model_settings_pages/GPT3';
+import GPTNEO from './components/model_settings_pages/GPTNEO';
+import GPTJ from './components/model_settings_pages/GPTJ';
+import Bloom from './components/model_settings_pages/Bloom';
 
 const App = () => {
     const [activeTab, setActiveTab] = useState(+localStorage.getItem("active-tab") || 1);
