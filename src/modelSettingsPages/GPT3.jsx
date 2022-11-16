@@ -1,18 +1,23 @@
 import { useState } from 'react';
 
-const GPT3 = () => {
-    const [temperature, setTemperature] = useState(0.7);
-    const [maxLength, setMaxLength] = useState(256);
-    const [topP, setTopP] = useState(1);
-    const [frequencyPenalty, setFrequencyPenalty] = useState(0);
-    const [presencePenalty, setPresencePenalty] = useState(0);
+const GPT3 = ({settings, updateSettings}) => {
+    const { model, temperature, maxLength, topP, frequencyPenalty, presencePenalty } = settings;
+    // const [temperature, setTemperature] = useState(0.7);
+    // const [maxLength, setMaxLength] = useState(256);
+    // const [topP, setTopP] = useState(1);
+    // const [frequencyPenalty, setFrequencyPenalty] = useState(0);
+    // const [presencePenalty, setPresencePenalty] = useState(0);
+
+    const updateSingleSetting = (update) => {
+        updateSettings({ ...settings, ...update });
+    }
 
     return (
         <>
             <label className="label" htmlFor="gpt3-model">
                 <span className="label-text-lg">Model</span>
             </label>
-            <select className="select select-primary w-full" id="gpt3-model">
+            <select className="select select-primary w-full" id="gpt3-model" value={model} onChange={(e) => { updateSingleSetting({ model: e.target.value }); }}>
                 <option value="text-davinci-002">text-davinci-002</option>
                 <option value="text-curie-001">text-curie-001</option>
                 <option value="text-babbage-001">text-babbage-001</option>
@@ -22,31 +27,31 @@ const GPT3 = () => {
                 <span className="label-text-lg pt-4">Temperature</span>
             </label>
             <div className="flex flex-row items-center gap-4">
-                <input type="range" min="0" max="1" value={temperature} className="range range-primary w-5/6" step="0.01" id="gpt3-temp" onChange={(e) => { setTemperature(+e.target.value); }}/><span className="input w-max h-min p-2 bg-base-200">{temperature}</span>
+                <input type="range" min="0" max="1" value={temperature} className="range range-primary w-5/6" step="0.01" id="gpt3-temp" onChange={(e) => { updateSingleSetting({ temperature: +e.target.value }); }}/><span className="input w-max h-min p-2 bg-base-200">{temperature}</span>
             </div>
             <label className="label" htmlFor="gpt3-max-len">
                 <span className="label-text-lg pt-4">Maximum Length</span>
             </label>
             <div className="flex flex-row items-center gap-4">
-                <input type="range" min="1" max="2048" value={maxLength} className="range range-primary w-5/6" step="1" id="gpt3-max-len" onChange={(e) => { setMaxLength(+e.target.value); }}/><span className="input w-max h-min p-2 bg-base-200">{maxLength}</span>
+                <input type="range" min="1" max="2048" value={maxLength} className="range range-primary w-5/6" step="1" id="gpt3-max-len" onChange={(e) => { updateSingleSetting({ maxLength: +e.target.value }); }}/><span className="input w-max h-min p-2 bg-base-200">{maxLength}</span>
             </div>
             <label className="label" htmlFor="gpt3-top-p">
                 <span className="label-text-lg pt-4">Top P</span>
             </label>
             <div className="flex flex-row items-center gap-4">
-                <input type="range" min="0" max="1" value={topP} className="range range-primary w-5/6" step="0.01" id="gpt3-top-p" onChange={(e) => { setTopP(+e.target.value); }}/><span className="input w-max h-min p-2 bg-base-200">{topP}</span>
+                <input type="range" min="0" max="1" value={topP} className="range range-primary w-5/6" step="0.01" id="gpt3-top-p" onChange={(e) => { updateSingleSetting({ topP: +e.target.value }); }}/><span className="input w-max h-min p-2 bg-base-200">{topP}</span>
             </div>
             <label className="label" htmlFor="gpt3-freq-pen">
                 <span className="label-text-lg pt-4">Frequency Penalty</span>
             </label>
             <div className="flex flex-row items-center gap-4">
-                <input type="range" min="0" max="2" value={frequencyPenalty} className="range range-primary w-5/6" step="0.01" id="gpt3-freq-pen" onChange={(e) => { setFrequencyPenalty(+e.target.value); }}/><span className="input w-max h-min p-2 bg-base-200">{frequencyPenalty}</span>
+                <input type="range" min="0" max="2" value={frequencyPenalty} className="range range-primary w-5/6" step="0.01" id="gpt3-freq-pen" onChange={(e) => { updateSingleSetting({ frequencyPenalty: +e.target.value }); }}/><span className="input w-max h-min p-2 bg-base-200">{frequencyPenalty}</span>
             </div>
             <label className="label" htmlFor="gpt3-presence-pen">
                 <span className="label-text-lg pt-4">Presence Penalty</span>
             </label>
             <div className="flex flex-row items-center gap-4">
-                <input type="range" min="0" max="2" value={presencePenalty} className="range range-primary w-5/6" step="0.01" id="gpt3-presence-pen" onChange={(e) => { setPresencePenalty(+e.target.value); }}/><span className="input w-max h-min p-2 bg-base-200">{presencePenalty}</span>
+                <input type="range" min="0" max="2" value={presencePenalty} className="range range-primary w-5/6" step="0.01" id="gpt3-presence-pen" onChange={(e) => { updateSingleSetting({ presencePenalty: +e.target.value }); }}/><span className="input w-max h-min p-2 bg-base-200">{presencePenalty}</span>
             </div>
         </>
     )

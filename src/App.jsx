@@ -9,37 +9,41 @@ import GPTJ from './modelSettingsPages/GPTJ';
 import Bloom from './modelSettingsPages/Bloom';
 
 const App = () => {
-    const [activeTab, setActiveTab] = useState(1);
+    const [activeTab, setActiveTab] = useState(+localStorage.getItem("active-tab") || 1);
 
-    const [gpt3Settings, setGpt3Settings] = useState(localStorage.getItem("gpt3Settings") || defaultSettings.gpt3);
-    const [gptNeoSettings, setGptNeoSettings] = useState(localStorage.getItem("gptNeoSettings") || defaultSettings.gptneo);
-    const [gptJSettings, setGptJSettings] = useState(localStorage.getItem("gptJSettings") || defaultSettings.gptneo);
-    const [bloomSettings, setBloomSettings] = useState(localStorage.getItem("bloomSettings") || defaultSettings.bloom);
+    useEffect(() => {
+        localStorage.setItem("active-tab", activeTab);
+    }, [activeTab]);
+
+    const [gpt3Settings, setGpt3Settings] = useState(JSON.parse(localStorage.getItem("gpt3Settings")) || defaultSettings.gpt3);
+    const [gptNeoSettings, setGptNeoSettings] = useState(JSON.parse(localStorage.getItem("gptNeoSettings")) || defaultSettings.gptneo);
+    const [gptJSettings, setGptJSettings] = useState(JSON.parse(localStorage.getItem("gptJSettings")) || defaultSettings.gptneo);
+    const [bloomSettings, setBloomSettings] = useState(JSON.parse(localStorage.getItem("bloomSettings")) || defaultSettings.bloom);
 
     // useEffect(() => {
     //     localStorage.getItem("gpt3Settings")
     // }, []);
 
     useEffect(() => {
-        localStorage.setItem("gpt3Settings", gpt3Settings);
+        localStorage.setItem("gpt3Settings", JSON.stringify(gpt3Settings));
     }, [gpt3Settings]);
 
     useEffect(() => {
-        localStorage.setItem("gptNeoSettings", gptNeoSettings);
+        localStorage.setItem("gptNeoSettings", JSON.stringify(gptNeoSettings));
     }, [gptNeoSettings]);
 
     useEffect(() => {
-        localStorage.setItem("gptJSettings", gptJSettings);
+        localStorage.setItem("gptJSettings", JSON.stringify(gptJSettings));
     }, [gptJSettings]);
 
     useEffect(() => {
-        localStorage.setItem("bloomSettings", bloomSettings);
+        localStorage.setItem("bloomSettings", JSON.stringify(bloomSettings));
     }, [bloomSettings]);
 
     return (
         <>
             <div id="root" className="grid grid-span-rows grid-cols-12 gap w-screen h-screen">
-                <div contentEditable="true" className="transition-all bg-base-200 border hover:border-primary focus:border-primary-focus col-span-8 m-2 rounded p-2 outline-none">
+                <div contentEditable="true" className="transition-all bg-base-200 border hover:border-primary focus:border-primary-focus col-span-8 m-2 rounded p-4 outline-none">
 
                 </div>
                 <div className="flex flex-col col-span-4 mt-2 mb-2 pr-2 w-full overflow-auto">
@@ -51,14 +55,22 @@ const App = () => {
                     </div>
 
                     <div className="flex flex-col h-full w-full border rounded bg-base-200 p-4 overflow-auto">
-                        { activeTab === 1 && <GPT3 /> }
-                        { activeTab === 2 && <GPTNEO /> }
-                        { activeTab === 3 && <GPTJ /> }
-                        { activeTab === 4 && <Bloom /> }
+                        { activeTab === 1 && <GPT3 settings={gpt3Settings} updateSettings={setGpt3Settings} /> }
+                        { activeTab === 2 && <GPTNEO settings={gptNeoSettings} updateSettings={setGptNeoSettings} /> }
+                        { activeTab === 3 && <GPTJ settings={gptJSettings} updateSettings={setGptJSettings} /> }
+                        { activeTab === 4 && <Bloom settings={bloomSettings} updateSettings={setBloomSettings} /> }
                     </div>
 
                     <div className="flex flex-row mt-2 justify-between w-full p gap">
-                        <button className="btn btn-primary">Query all</button><button className="btn btn-primary">Query highlighted model</button><label htmlFor="settings-modal" className="btn">Settings</label>
+                        <div className="w-2/5 pr-2">
+                            <button className="btn btn-primary w-full">Query all</button>
+                        </div>
+                        <div className="w-2/5 pr-2">
+                            <button className="btn btn-primary w-full">Query selected model</button>
+                        </div>
+                        <div className="w-1/5">
+                            <label htmlFor="settings-modal" className="btn w-full">Settings</label>
+                        </div>
                     </div>
                 </div>
             </div>

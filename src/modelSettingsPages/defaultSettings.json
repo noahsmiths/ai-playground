@@ -1,5 +1,6 @@
 {
     "gpt3": {
+        "model": "text-davinci-002",
         "temperature": 0.7,
         "maxLength": 256,
         "topP": 1,

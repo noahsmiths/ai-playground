@@ -1,6 +1,17 @@
 import React from 'react'
 
 const Settings = () => {
+    const resetToDefault = () => {
+        if (confirm("Are you sure you want to reset all model settings?")) {
+            localStorage.removeItem("gpt3Settings");
+            localStorage.removeItem("gptNeoSettings");
+            localStorage.removeItem("gptJSettings");
+            localStorage.removeItem("bloomSettings");
+
+            window.location.reload();
+        }
+    }
+
     return (
         <>
             <input type="checkbox" id="settings-modal" className="modal-toggle" />
@@ -19,6 +30,7 @@ const Settings = () => {
                         </label>
                         <input type="text" placeholder="Enter key" className="input input-bordered input-primary w-full" />
                     </div>
+                    <button className="btn btn-warning mt-4 w-full" onClick={resetToDefault}>Reset to Defaults</button>
                     <div className="modal-action">
                         <label htmlFor="settings-modal" className="btn btn-primary w-full">Done</label>
                     </div>
