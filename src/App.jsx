@@ -11,18 +11,20 @@ import Bloom from './modelSettingsPages/Bloom';
 const App = () => {
     const [activeTab, setActiveTab] = useState(+localStorage.getItem("active-tab") || 1);
 
-    useEffect(() => {
-        localStorage.setItem("active-tab", activeTab);
-    }, [activeTab]);
-
     const [gpt3Settings, setGpt3Settings] = useState(JSON.parse(localStorage.getItem("gpt3Settings")) || defaultSettings.gpt3);
     const [gptNeoSettings, setGptNeoSettings] = useState(JSON.parse(localStorage.getItem("gptNeoSettings")) || defaultSettings.gptneo);
     const [gptJSettings, setGptJSettings] = useState(JSON.parse(localStorage.getItem("gptJSettings")) || defaultSettings.gptneo);
     const [bloomSettings, setBloomSettings] = useState(JSON.parse(localStorage.getItem("bloomSettings")) || defaultSettings.bloom);
 
+    const [openAIKey, setOpenAIKey] = useState(localStorage.getItem("open-ai-key") || "");
+    const [huggingFaceKey, setHuggingFaceKey] = useState(localStorage.getItem("hugging-face-key") || "");
+
     // useEffect(() => {
     //     localStorage.getItem("gpt3Settings")
     // }, []);
+    useEffect(() => {
+        localStorage.setItem("active-tab", activeTab);
+    }, [activeTab]);
 
     useEffect(() => {
         localStorage.setItem("gpt3Settings", JSON.stringify(gpt3Settings));
@@ -39,6 +41,14 @@ const App = () => {
     useEffect(() => {
         localStorage.setItem("bloomSettings", JSON.stringify(bloomSettings));
     }, [bloomSettings]);
+
+    useEffect(() => {
+        localStorage.setItem("open-ai-key", openAIKey);
+    });
+
+    useEffect(() => {
+        localStorage.setItem("hugging-face-key", huggingFaceKey);
+    });
 
     return (
         <>
@@ -74,7 +84,7 @@ const App = () => {
                     </div>
                 </div>
             </div>
-            <Settings />
+            <Settings openAI={{openAIKey, setOpenAIKey}} huggingFace={{huggingFaceKey, setHuggingFaceKey}}/>
         </>
     )
 }
