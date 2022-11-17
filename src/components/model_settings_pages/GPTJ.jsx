@@ -1,15 +1,15 @@
 import { useState } from 'react';
 
 const GPTJ = ({settings, updateSettings}) => {
-    const { temperature, maxLengthEnabled, maxLength, topPEnabled, topP, repetitionPenaltyEnabled, repetitionPenalty, doSample } = settings;
+    const { temperature, max_new_tokens_enabled, max_new_tokens, top_p_enabled, top_p, repetition_penalty_enabled, repetition_penalty, do_sample } = settings;
     // const [temperature, setTemperature] = useState(1);
-    // const [maxLengthEnabled, setMaxLengthEnabled] = useState(false);
-    // const [maxLength, setMaxLength] = useState(128);
-    // const [topPEnabled, setTopPEnabled] = useState(false);
-    // const [topP, setTopP] = useState(1);
-    // const [repetitionPenaltyEnabled, setRepetitionPenaltyEnabled] = useState(false);
-    // const [repetitionPenalty, setRepetitionPenalty] = useState(0);
-    // const [doSample, setDoSample] = useState(true);
+    // const [max_new_tokens_enabled, setmax_new_tokens_enabled] = useState(false);
+    // const [max_new_tokens, setmax_new_tokens] = useState(128);
+    // const [top_p_enabled, settop_p_enabled] = useState(false);
+    // const [top_p, settop_p] = useState(1);
+    // const [repetition_penalty_enabled, setrepetition_penalty_enabled] = useState(false);
+    // const [repetition_penalty, setrepetition_penalty] = useState(0);
+    // const [do_sample, setdo_sample] = useState(true);
 
     const updateSingleSetting = (update) => {
         updateSettings({ ...settings, ...update });
@@ -28,34 +28,34 @@ const GPTJ = ({settings, updateSettings}) => {
                 <label className="label" htmlFor="gptj-max-len-toggle">
                     <span className="label-text-lg pt-4">Maximum Length</span>
                 </label>
-                <input type="checkbox" checked={maxLengthEnabled} className="toggle toggle-accent mb-2 ml-1" id="gptj-max-len-toggle" onChange={(e) => { updateSingleSetting({maxLengthEnabled: e.target.checked}); }}/>
+                <input type="checkbox" checked={max_new_tokens_enabled} className="toggle toggle-accent mb-2 ml-1" id="gptj-max-len-toggle" onChange={(e) => { updateSingleSetting({max_new_tokens_enabled: e.target.checked}); }}/>
             </div>
             <div className="flex flex-row items-center gap-4">
-                <input type="range" min="1" max="250" value={maxLength} className="range range-primary w-5/6 disabled:opacity-25" step="1" id="gptj-max-len" onChange={(e) => { updateSingleSetting({ maxLength: +e.target.value }); }} disabled={!maxLengthEnabled} /><span className="input w-max h-min p-2 bg-base-200">{maxLength}</span>
+                <input type="range" min="1" max="250" value={max_new_tokens} className="range range-primary w-5/6 disabled:opacity-25" step="1" id="gptj-max-len" onChange={(e) => { updateSingleSetting({ max_new_tokens: +e.target.value }); }} disabled={!max_new_tokens_enabled} /><span className="input w-max h-min p-2 bg-base-200">{max_new_tokens}</span>
             </div>
             <div className="flex flex-row items-end">
                 <label className="label" htmlFor="gptj-top-p-toggle">
                     <span className="label-text-lg pt-4">Top P</span>
                 </label>
-                <input type="checkbox" checked={topPEnabled} className="toggle toggle-accent mb-2 ml-1" id="gptj-top-p-toggle" onChange={(e) => { updateSingleSetting({topPEnabled: e.target.checked}); }} />
+                <input type="checkbox" checked={top_p_enabled} className="toggle toggle-accent mb-2 ml-1" id="gptj-top-p-toggle" onChange={(e) => { updateSingleSetting({top_p_enabled: e.target.checked}); }} />
             </div>
             <div className="flex flex-row items-center gap-4">
-                <input type="range" min="0" max="1" value={topP} className="range range-primary w-5/6 disabled:opacity-25" step="0.01" id="gptj-top-p" onChange={(e) => { updateSingleSetting({ topP: +e.target.value }); }} disabled={!topPEnabled} /><span className="input w-max h-min p-2 bg-base-200">{topP}</span>
+                <input type="range" min="0" max="1" value={top_p} className="range range-primary w-5/6 disabled:opacity-25" step="0.01" id="gptj-top-p" onChange={(e) => { updateSingleSetting({ top_p: +e.target.value }); }} disabled={!top_p_enabled} /><span className="input w-max h-min p-2 bg-base-200">{top_p}</span>
             </div>
             <div className="flex flex-row items-end">
                 <label className="label" htmlFor="gptj-rep-pen-toggle">
                     <span className="label-text-lg pt-4">Repetition Penalty</span>
                 </label>
-                <input type="checkbox" checked={repetitionPenaltyEnabled} className="toggle toggle-accent mb-2 ml-1" id="gptj-rep-pen-toggle" onChange={(e) => { updateSingleSetting({repetitionPenaltyEnabled: e.target.checked}); }} />
+                <input type="checkbox" checked={repetition_penalty_enabled} className="toggle toggle-accent mb-2 ml-1" id="gptj-rep-pen-toggle" onChange={(e) => { updateSingleSetting({repetition_penalty_enabled: e.target.checked}); }} />
             </div>
             <div className="flex flex-row items-center gap-4">
-                <input type="range" min="0" max="100" value={repetitionPenalty} className="range range-primary w-5/6 disabled:opacity-25" step="0.01" id="gptj-rep-pen" onChange={(e) => { updateSingleSetting({repetitionPenalty: +e.target.value}); }} disabled={!repetitionPenaltyEnabled} /><span className="input w-max h-min p-2 bg-base-200">{repetitionPenalty}</span>
+                <input type="range" min="0" max="100" value={repetition_penalty} className="range range-primary w-5/6 disabled:opacity-25" step="0.01" id="gptj-rep-pen" onChange={(e) => { updateSingleSetting({repetition_penalty: +e.target.value}); }} disabled={!repetition_penalty_enabled} /><span className="input w-max h-min p-2 bg-base-200">{repetition_penalty}</span>
             </div>
             <div className="flex flex-row items-end gap-1">
                 <label className="label" htmlFor="gptj-do-sample-toggle">
                     <span className="label-text-lg pt-4">Do Sample (Greedy if off)</span>
                 </label>
-                <input type="checkbox" checked={doSample} className="toggle toggle-accent mb-2" id="gptj-do-sample-toggle" onChange={(e) => { updateSingleSetting({doSample: e.target.checked}); }} />
+                <input type="checkbox" checked={do_sample} className="toggle toggle-accent mb-2" id="gptj-do-sample-toggle" onChange={(e) => { updateSingleSetting({do_sample: e.target.checked}); }} />
             </div>
         </>
     )
