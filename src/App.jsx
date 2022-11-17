@@ -162,7 +162,7 @@ const App = () => {
                             if (returnText.length === 0) {
                                 setAlertMessage("Bloom returned an empty string. A stop sequence may have been reached.");
                             } else {
-                                insertModelResponse(returnText, "Bloom");
+                                insertModelResponse(returnText.indexOf(queryInput.current.innerText) === 0 ? returnText.replace(queryInput.current.innerText, "") : returnText , "Bloom");
                             }
                         }
                     })
