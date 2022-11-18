@@ -202,7 +202,7 @@ const App = () => {
     return (
         <>
             <div id="container" className="grid grid-span-rows grid-cols-12 gap w-screen h-screen">
-                <div ref={queryInput} id="test" placeholder="Write your query here." contentEditable={!editable && "plaintext-only"} className="transition-all bg-base-200 border hover:border-primary focus:border-primary-focus col-span-8 m-2 rounded p-4 outline-none before:empty:content-[attr(placeholder)] before:empty:text-gray-500" onMouseDown={lockSpans}>
+                <div ref={queryInput} id="test" placeholder="Write your query here." contentEditable={!editable && "plaintext-only"} className="transition-all bg-base-200 border hover:border-primary focus:border-primary-focus col-span-8 m-2 rounded p-4 outline-none before:empty:content-[attr(placeholder)] before:empty:text-gray-500 overflow-auto" onMouseDown={lockSpans}>
                     {/* <ModelResponse color="text-purple-500" text="Hello there!" editable={editable} setEditable={setEditable} /> */}
                 </div>
                 <div className="flex flex-col col-span-4 mt-2 mb-2 pr-2 w-full overflow-auto">
